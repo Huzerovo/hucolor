@@ -38,10 +38,10 @@ hucolor 是一套低饱和、暖底、冷主色的配色体系，围绕「靛蓝
 | 角色       | 色值      | 语义名        | 用途                                   |
 | ---------- | --------- | ------------- | -------------------------------------- |
 | 靛蓝主色   | `#a3a4ff` | `blue`        | 关键字 / 类型 / 运算符 / 链接 / 激活态 |
-| 靛蓝（强） | `#b9baff` | `blue_bright` | 布尔、强调悬停、亮色态                 |
+| 靛蓝（强） | `#d6d7ff` | `blue_bright` | 布尔、强调悬停、亮色态                 |
 | 兰花紫     | `#c792ea` | `purple`      | 数字 / 浮点 / 注解 / 已访问链接        |
 | 暖橙       | `#f0a35e` | `orange`      | 函数 / 标题 1 / 匹配 / 点缀            |
-| 锈橙       | `#d08a50` | `rust`        | 行内代码、代码块                       |
+| 玫红       | `#d0508a` | `rose`        | 行内代码、代码块                       |
 | 绿（成功） | `#4cc36a` | `green`       | 字符串 / diff+ / 成功                  |
 | 黄（警告） | `#e8a23d` | `yellow`      | 预处理 / 宏 / TODO / 警告              |
 | 高亮标记   | `#4a3b20` | `mark`        | `<mark>` 高亮（网页端）                |
@@ -63,10 +63,10 @@ hucolor 是一套低饱和、暖底、冷主色的配色体系，围绕「靛蓝
 | `Color6`  | `#7cc6cf` | `cyan`          | 派生青              |
 | `Color7`  | `#f1f1f4` | `fg0`           | 同 `text-strong`    |
 | `Color8`  | `#64646e` | `bright_black`  | 补全提示 / 亮黑     |
-| `Color9`  | `#f0a35e` | `orange`        | 同 `warm`           |
+| `Color9`  | `#d0508a` | `rose`          | 同 `code-text`      |
 | `Color10` | `#6fd98a` | `bright_green`  | 亮绿                |
-| `Color11` | `#f0b45a` | `bright_yellow` | 亮黄                |
-| `Color12` | `#b9baff` | `blue_bright`   | 同 `accent-strong`  |
+| `Color11` | `#f0a35e` | `orange`        | 同 `warm`           |
+| `Color12` | `#d6d7ff` | `blue_bright`   | 同 `accent-strong`  |
 | `Color13` | `#d8b4f2` | `bright_purple` | 亮紫                |
 | `Color14` | `#a5dae0` | `bright_cyan`   | 亮青                |
 | `Color15` | `#ffffff` | `white`         | 白                  |
@@ -94,10 +94,10 @@ hucolor 是一套低饱和、暖底、冷主色的配色体系，围绕「靛蓝
 | 角色          | 色值      | 语义名        |
 | ------------- | --------- | ------------- |
 | 靛蓝主色      | `#4a5cd4` | `blue`        |
-| 靛蓝（强）    | `#3d4fc4` | `blue_bright` |
+| 靛蓝（强）    | `#2f3fae` | `blue_bright` |
 | 兰花紫        | `#7d6fb8` | `purple`      |
 | 暖橙 / 陶土橙 | `#d9582e` | `orange`      |
-| 锈橙          | `#9a4f1f` | `rust`        |
+| 玫红          | `#ad3d63` | `rose`        |
 | 绿（成功）    | `#2e9e44` | `green`       |
 | 黄（警告）    | `#d98a00` | `yellow`      |
 | 高亮标记      | `#f7e8c8` | `mark`        |
@@ -119,10 +119,10 @@ hucolor 是一套低饱和、暖底、冷主色的配色体系，围绕「靛蓝
 | `Color6`  | `#2f9eab` | 青 = `cyan`                |
 | `Color7`  | `#161616` | 亮白槽 = `fg0`（最深文字） |
 | `Color8`  | `#333333` | 亮黑 = `text`              |
-| `Color9`  | `#d9582e` | 亮橙 = `warm`              |
+| `Color9`  | `#ad3d63` | 玫红 = `rose`             |
 | `Color10` | `#2e9e44` | 亮绿 = `done`              |
-| `Color11` | `#d98a00` | 亮黄 = `warn`              |
-| `Color12` | `#3d4fc4` | 亮蓝 = `accent-strong`     |
+| `Color11` | `#d9582e` | 亮橙 = `warm`             |
+| `Color12` | `#2f3fae` | 亮蓝 = `accent-strong`     |
 | `Color13` | `#7d6fb8` | 亮紫 = `accent-visited`    |
 | `Color14` | `#2f9eab` | 亮青 = `cyan`              |
 | `Color15` | `#ffffff` | 白                         |
@@ -134,21 +134,22 @@ hucolor 是一套低饱和、暖底、冷主色的配色体系，围绕「靛蓝
 | 语义名        | 色值（暗） | 典型用途                                                                         |
 | ------------- | ---------- | -------------------------------------------------------------------------------- |
 | `blue`        | `#a3a4ff`  | 关键字、类型、运算符、include/tag、构造函数、链接、目录、bufferline 指示、激活态 |
-| `blue_bright` | `#b9baff`  | 布尔、内建常量强调、符号链接、展开的文件夹                                       |
+| `blue_bright` | `#d6d7ff`  | 布尔、内建常量强调、符号链接、展开的文件夹                                       |
 | `purple`      | `#c792ea`  | 数字 / 浮点、注解、属性、补全种类、跳转标签次级                                  |
 | `orange`      | `#f0a35e`  | 函数 / 方法、标题 1、匹配括号、增量搜索、which-key、visual 模式                  |
 | `green`       | `#4cc36a`  | 字符串、字符、URL、diff 新增、git add、成功、help 命令                           |
 | `yellow`      | `#e8a23d`  | 预处理、宏、TODO、警告、diff 变更、git change、跳转标签                          |
 | `red`         | `#e0554a`  | 错误、删除、danger、replace 模式、拼写错误                                       |
 | `cyan`        | `#7cc6cf`  | 信息 / hint、特殊注释、正则、数学文本                                            |
-| `rust`        | `#d08a50`  | 行内代码、代码块                                                                 |
+| `rose`        | `#d0508a`  | 行内代码、代码块                                                                 |
 | `fg2`         | `#8e8e97`  | 注释、标点、次要文字                                                             |
 
 ## 5. 派生色与取色规则
 
 - **红**：暗色与暖橙解耦，独立取值 `#e0554a`（暖红，hue ≈ 4°），与暗色暖橙 `#f0a35e`、亮色暖橙 `#d9582e` 均明显区分；亮色下暖橙已占用 `#d9582e`，红另取 `#c94b3d`（更深更暖的陶土红）以免混淆。
 - **青**：色板缺青色相，暗青 `#7cc6cf` 取低饱和、与靛蓝同冷色族；亮青 `#2f9eab` 为对应亮色版。
-- **混色规则**：需要"底色 + 色"的场景按固定比例混色，例如标题背景 = `bg0` 与标题色 10:1 混色。当前暗色应用值：`Headline1`→`#362f2d`、`Headline2`→`#352f2a`、`Headline3`→`#27322e`、`Headline4`→`#2f2f3c`、`Headline5`→`#322d3a`、`Headline6`→`#31313c`。
+- **靛蓝强档**：`blue_bright`（`accent-strong`）须与主色 `blue` 拉开对比——暗色明显提亮（`#d6d7ff`）、亮色明显加深（`#2f3fae`），避免二者混同。
+- **混色规则**：需要"底色 + 色"的场景按固定比例混色，例如标题背景 = `bg0` 与标题色 10:1 混色。当前暗色应用值：`Headline1`→`#362f2d`、`Headline2`→`#352f2a`、`Headline3`→`#27322e`、`Headline4`→`#2f2f3c`、`Headline5`→`#322d3a`、`Headline6`→`#33333c`。
 
 ## 6. 使用原则
 
