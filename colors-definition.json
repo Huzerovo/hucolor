@@ -67,64 +67,84 @@
       ],
       "accent": [
         {
-          "role": "靛蓝主色",
+          "role": "靛蓝",
           "color_base": "#a3a4ff",
           "name": "blue",
-          "description": "关键字 / 类型 / 运算符 / 链接 / 激活态"
+          "code": "关键字 / 类型 / 运算符 / 结构 / 标签 / 模块",
+          "markdown": "标题（多级）、链接",
+          "web": "正文标题、超链接、激活态主色"
         },
         {
           "role": "靛蓝（强）",
           "color_base": "#d6d7ff",
           "name": "blue_bright",
-          "description": "布尔、强调悬停、亮色态"
+          "code": "布尔 / 内置族（常量·类型·函数·变量·模块·标签）",
+          "markdown": "粗体、斜体、六级标题",
+          "web": "强调文字、悬停高亮"
         },
         {
           "role": "兰花紫",
           "color_base": "#c792ea",
           "name": "purple",
-          "description": "数字 / 浮点 / 注解 / 已访问链接"
+          "code": "数字 / 浮点 / 常量 / 符号 / return",
+          "markdown": "链接标签、五级标题",
+          "web": "数字、标签、脚注"
         },
         {
           "role": "暖橙",
           "color_base": "#f0a35e",
           "name": "orange",
-          "description": "函数 / 标题 1 / 匹配 / 点缀"
+          "code": "特殊字符串 / 特殊字符",
+          "markdown": "行内代码、代码块",
+          "web": "行内代码、代码块"
         },
         {
           "role": "玫红",
           "color_base": "#d0508a",
           "name": "rose",
-          "description": "行内代码、代码块"
+          "code": "函数 / 方法 / 方法调用",
+          "markdown": "一级标题",
+          "web": "文章主标题点缀、引导强调"
         },
         {
-          "role": "绿（成功）",
+          "role": "绿",
           "color_base": "#4cc36a",
           "name": "green",
-          "description": "字符串 / diff+ / 成功"
+          "code": "字符串 / 字符 / 文档注释 / URL / diff 新增",
+          "markdown": "链接地址、列表、三级标题",
+          "web": "成功反馈、引用链接"
         },
         {
-          "role": "黄（警告）",
+          "role": "黄",
           "color_base": "#e8a23d",
           "name": "yellow",
-          "description": "预处理 / 宏 / TODO / 警告"
+          "code": "预处理指令 / TODO / 警告 / diff 变更",
+          "markdown": "二级标题、未勾选任务",
+          "web": "警告、待办提示"
         },
         {
-          "role": "高亮标记",
-          "color_base": "#4a3b20",
+          "role": "古金",
+          "color_base": "#b49153",
           "name": "mark",
-          "description": "高亮（网页端）"
+          "code": "宏 / 标签 / 注解 / 下划线",
+          "markdown": "下划线标注",
+          "web": "文中高亮标记、宏与标注强调"
         },
         {
-          "role": "红（错误）",
+          "role": "红",
           "color_base": "#e0554a",
           "name": "red",
-          "description": "错误 / 删除 / danger"
+          "code": "错误 / 异常 / 调试 / diff 删除",
+          "markdown": "删除线",
+          "web": "错误、危险警示"
         },
         {
-          "role": "青（信息）",
+          "role": "青",
           "color_base": "#7cc6cf",
           "name": "cyan",
-          "description": "信息 / hint / 特殊注释 / 正则"
+          "code": "正则 / 转义 / 路径 / 属性 / 标点 / 注释 / 信息",
+          "markdown": "引用块、数学公式",
+          "web": "信息提示、引用块、辅助说明"
         }
       ],
       "ansi": [
@@ -287,64 +307,84 @@
       ],
       "accent": [
         {
-          "role": "靛蓝主色",
+          "role": "靛蓝",
           "color_base": "#4a5cd4",
           "name": "blue",
-          "description": "关键字 / 类型 / 运算符 / 链接 / 激活态"
+          "code": "关键字 / 类型 / 运算符 / 结构 / 标签 / 模块",
+          "markdown": "标题（多级）、链接",
+          "web": "正文标题、超链接、激活态主色"
         },
         {
           "role": "靛蓝（强）",
           "color_base": "#2f3fae",
           "name": "blue_bright",
-          "description": "布尔、强调悬停、亮色态"
+          "code": "布尔 / 内置族（常量·类型·函数·变量·模块·标签）",
+          "markdown": "粗体、斜体、六级标题",
+          "web": "强调文字、悬停高亮"
         },
         {
           "role": "兰花紫",
           "color_base": "#7d6fb8",
           "name": "purple",
-          "description": "数字 / 浮点 / 注解 / 已访问链接"
+          "code": "数字 / 浮点 / 常量 / 符号 / return",
+          "markdown": "链接标签、五级标题",
+          "web": "数字、标签、脚注"
         },
         {
-          "role": "暖橙 / 陶土橙",
+          "role": "陶土橙",
           "color_base": "#d9582e",
           "name": "orange",
-          "description": "函数 / 标题 1 / 匹配 / 点缀"
+          "code": "特殊字符串 / 特殊字符",
+          "markdown": "行内代码、代码块",
+          "web": "行内代码、代码块"
         },
         {
           "role": "玫红",
           "color_base": "#ad3d63",
           "name": "rose",
-          "description": "行内代码、代码块"
+          "code": "函数 / 方法 / 方法调用",
+          "markdown": "一级标题",
+          "web": "文章主标题点缀、引导强调"
         },
         {
-          "role": "绿（成功）",
+          "role": "绿",
           "color_base": "#2e9e44",
           "name": "green",
-          "description": "字符串 / diff+ / 成功"
+          "code": "字符串 / 字符 / 文档注释 / URL / diff 新增",
+          "markdown": "链接地址、列表、三级标题",
+          "web": "成功反馈、引用链接"
         },
         {
-          "role": "黄（警告）",
+          "role": "黄",
           "color_base": "#d98a00",
           "name": "yellow",
-          "description": "预处理 / 宏 / TODO / 警告"
+          "code": "预处理指令 / TODO / 警告 / diff 变更",
+          "markdown": "二级标题、未勾选任务",
+          "web": "警告、待办提示"
         },
         {
-          "role": "高亮标记",
-          "color_base": "#f7e8c8",
+          "role": "古金",
+          "color_base": "#f8e8b0",
           "name": "mark",
-          "description": "高亮（网页端）"
+          "code": "宏 / 标签 / 注解 / 下划线",
+          "markdown": "下划线标注",
+          "web": "文中高亮标记、宏与标注强调"
         },
         {
-          "role": "红（错误）",
+          "role": "红",
           "color_base": "#c94b3d",
           "name": "red",
-          "description": "错误 / 删除 / danger"
+          "code": "错误 / 异常 / 调试 / diff 删除",
+          "markdown": "删除线",
+          "web": "错误、危险警示"
         },
         {
-          "role": "青（信息）",
+          "role": "青",
           "color_base": "#2f9eab",
           "name": "cyan",
-          "description": "信息 / hint / 特殊注释 / 正则"
+          "code": "正则 / 转义 / 路径 / 属性 / 标点 / 注释 / 信息",
+          "markdown": "引用块、数学公式",
+          "web": "信息提示、引用块、辅助说明"
         }
       ],
       "ansi": [
@@ -448,15 +488,16 @@
     }
   },
   "accent_desc": {
-    "blue": "关键字、类型、运算符、include/tag、构造函数、链接、目录、bufferline 指示、激活态",
-    "blue_bright": "布尔、内建常量强调、符号链接、展开的文件夹",
-    "purple": "数字 / 浮点、注解、属性、补全种类、跳转标签次级",
-    "orange": "函数 / 方法、标题 1、匹配括号、增量搜索、which-key、visual 模式",
-    "green": "字符串、字符、URL、diff 新增、git add、成功、help 命令",
-    "yellow": "预处理、宏、TODO、警告、diff 变更、git change、跳转标签",
-    "red": "错误、删除、danger、replace 模式、拼写错误",
-    "cyan": "信息 / hint、特殊注释、正则、数学文本",
-    "rose": "行内代码、代码块",
-    "fg2": "注释、标点、次要文字"
+    "blue": "关键字 / 类型 / 运算符 / 结构 / 标签 / 链接",
+    "blue_bright": "内置常量 / 布尔 / 内置类型 / 内置函数 / 强调",
+    "purple": "数字 / 浮点 / 常量 / 符号 / return",
+    "orange": "特殊字符串 / 字符 / 行内代码",
+    "rose": "函数 / 方法调用 / 主标题",
+    "green": "字符串 / 文档注释 / URL / diff 新增",
+    "yellow": "预处理指令 / TODO / 警告 / diff 变更",
+    "mark": "宏 / 标签 / 注解 / 下划线 / 高亮标记",
+    "red": "错误 / 删除 / 异常 / diff 删除",
+    "cyan": "正则 / 转义 / 路径 / 标点 / 注释 / 信息",
+    "fg2": "注释 / 标点 / 次要文字"
   }
 }

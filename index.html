@@ -247,6 +247,26 @@
       border: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
     }
 
+    .acc-cell {
+      min-width: 104px;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .acc-role {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .acc-name {
+      display: block;
+      font-size: 11px;
+      opacity: .72;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
     .ansi-grid {
       display: grid;
       grid-template-columns: repeat(8, 1fr);
@@ -396,6 +416,23 @@
     </div>
   </div>`;
 
+    const accentTable = (items) => `
+  <table>
+    <thead>
+      <tr><th>语义色</th><th>色值</th><th>代码</th><th>Markdown</th><th>网页</th></tr>
+    </thead>
+    <tbody>
+      ${items.map(e => `
+    <tr>
+      <td class="acc-cell" style="background:${e.color_base};color:${chipText(e.color_base)}"><span class="acc-role">${e.role}</span><span class="acc-name">${e.name}</span></td>
+      <td><code>${e.color_base}</code></td>
+      <td>${e.code}</td>
+      <td>${e.markdown}</td>
+      <td>${e.web}</td>
+    </tr>`).join('')}
+    </tbody>
+  </table>`;
+
     const ansiCell = (idx, hex, note) => `
   <div class="ansi-cell">
     <div class="ansi-chip" style="background:${hex};color:${chipText(hex)}">${hex}</div>
@@ -407,12 +444,12 @@
     const render = (darkBg, darkText, darkAccent, darkAnsi, lightBg, lightText, lightAccent, lightAnsi, mapping) => {
       document.getElementById('darkBg').innerHTML = '<h3>背景层级</h3>' + grid(darkBg);
       document.getElementById('darkText').innerHTML = '<h3>文字层级</h3>' + grid(darkText);
-      document.getElementById('darkAccent').innerHTML = '<h3>强调与语义色</h3>' + grid(darkAccent);
+      document.getElementById('darkAccent').innerHTML = '<h3>强调与语义色</h3>' + accentTable(darkAccent);
       document.getElementById('darkAnsi').innerHTML = '<h3>终端 ANSI 16 色</h3>' + '<div class="ansi-grid">' + darkAnsi.join('') + '</div>';
 
       document.getElementById('lightBg').innerHTML = '<h3>背景层级</h3>' + grid(lightBg);
       document.getElementById('lightText').innerHTML = '<h3>文字层级</h3>' + grid(lightText);
-      document.getElementById('lightAccent').innerHTML = '<h3>强调与语义色</h3>' + grid(lightAccent);
+      document.getElementById('lightAccent').innerHTML = '<h3>强调与语义色</h3>' + accentTable(lightAccent);
       document.getElementById('lightAnsi').innerHTML = '<h3>终端 ANSI 16 色</h3>' + '<div class="ansi-grid">' + lightAnsi.join('') + '</div>';
 
       document.getElementById('mappingBody').innerHTML = mapping.map(m => `
@@ -445,12 +482,12 @@
 
         const darkBg = d.background.map(e => dualCard(e.role, e.name, e.color_base, e.color_bright, e.description));
         const darkText = d.text.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
-        const darkAccent = d.accent.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
+        const darkAccent = d.accent;
         const darkAnsi = d.ansi.map(e => ansiCell(parseInt(e.role.slice(5), 10), e.color_base, e.name));
 
         const lightBg = l.background.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
         const lightText = l.text.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
-        const lightAccent = l.accent.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
+        const lightAccent = l.accent;
         const lightAnsi = l.ansi.map(e => ansiCell(parseInt(e.role.slice(5), 10), e.color_base, e.name));
 
         const mapping = Object.entries(config.accent_desc).map(([name, desc]) =>
