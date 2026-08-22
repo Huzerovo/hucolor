@@ -1,203 +1,371 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="dark">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>hucolor 配色展示</title>
-<style>
-  html[data-theme="dark"] {
-    --bg: #141416;
-    --bg-panel: #232328;
-    --bg-card: #2c2c34;
-    --line: #3d3d46;
-    --text: #c9c9cf;
-    --text-strong: #f1f1f4;
-    --text-muted: #8e8e97;
-    --text-faint: #67676f;
-    --accent: #a3a4ff;
-    --warm: #f0a35e;
-  }
-  html[data-theme="light"] {
-    --bg: #f7f7f5;
-    --bg-panel: #ffffff;
-    --bg-card: #f0eee9;
-    --line: #e5e3de;
-    --text: #333333;
-    --text-strong: #161616;
-    --text-muted: #6d6d6d;
-    --text-faint: #9b9b9b;
-    --accent: #4a5cd4;
-    --warm: #d9582e;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    transition: background-color .3s, color .3s;
-  }
-  header {
-    position: sticky; top: 0; z-index: 10;
-    display: flex; align-items: center; gap: 16px;
-    padding: 14px 28px;
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  header h1 { margin: 0; font-size: 18px; color: var(--text-strong); letter-spacing: .5px; }
-  .tagline { margin: 0; font-size: 13px; color: var(--text-muted); }
-  header button {
-    margin-left: auto;
-    padding: 7px 16px;
-    font-size: 13px;
-    color: var(--bg);
-    background: var(--accent);
-    border: none; border-radius: 8px; cursor: pointer;
-    transition: transform .15s;
-  }
-  header button:hover { transform: translateY(-1px); }
-  main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 72px; }
-  .lede { max-width: 640px; color: var(--text-muted); margin: 8px 0 36px; }
-  section { margin-bottom: 44px; }
-  h2 {
-    font-size: 21px; color: var(--text-strong); margin: 0 0 6px;
-  }
-  .sub { color: var(--text-muted); font-size: 14px; margin: 0 0 16px; }
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 20px 22px;
-    margin-bottom: 20px;
-  }
-  .card h3 { margin: 0 0 14px; font-size: 15px; color: var(--text-strong); }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
-    gap: 12px;
-  }
-  .swatch { display: flex; flex-direction: column; gap: 8px; }
-  .chips { display: flex; gap: 6px; }
-  .chip {
-    flex: 1;
-    height: 72px;
-    border-radius: 10px;
-    border: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
-    display: flex; align-items: flex-end; justify-content: center;
-    padding-bottom: 6px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 11.5px;
-  }
-  .chip + .chip { margin-left: 0; }
-  .chip-label {
-    flex: none; text-align: center;
-    font-size: 11px; line-height: 1; letter-spacing: 1px; text-transform: uppercase;
-  }
-  .meta { display: flex; flex-direction: column; gap: 2px; }
-  .meta .role { color: var(--text-strong); font-size: 13.5px; }
-  .meta .sem { color: var(--text-muted); font-size: 12px; font-family: ui-monospace, Menlo, Consolas, monospace; }
-  code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 12px;
-    color: var(--accent);
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13.5px;
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 12px; overflow: hidden;
-  }
-  th, td { padding: 9px 14px; text-align: left; border-bottom: 1px solid var(--line); }
-  thead th { background: color-mix(in srgb, var(--line) 45%, transparent); color: var(--text-strong); font-weight: 600; }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:nth-child(even) { background: color-mix(in srgb, var(--bg-panel) 45%, transparent); }
-  .dot {
-    display: inline-block; width: 11px; height: 11px; border-radius: 3px;
-    vertical-align: -1px; margin-right: 6px;
-    border: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
-  }
-  .ansi-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
-  .ansi-cell {
-    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
-    background: var(--bg-card);
-  }
-  .ansi-chip { height: 56px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; }
-  .ansi-cell .idx {
-    font-size: 11px; color: var(--text-faint); padding: 5px 8px 7px;
-    font-family: ui-monospace, Menlo, Consolas, monospace;
-    display: flex; justify-content: space-between;
-  }
-  .ansi-cell .idx b { color: var(--text-muted); font-weight: 600; }
-  footer { text-align: center; color: var(--text-faint); font-size: 12.5px; padding: 24px 16px 48px; border-top: 1px solid var(--line); }
-  @media (max-width: 640px) {
-    .ansi-grid { grid-template-columns: repeat(4, 1fr); }
-    main { padding: 22px 14px 56px; }
-    header { padding: 12px 16px; flex-wrap: wrap; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hucolor 配色展示</title>
+  <style>
+    html[data-theme="dark"] {
+      --bg: #141416;
+      --bg-panel: #232328;
+      --bg-card: #2c2c34;
+      --line: #3d3d46;
+      --text: #c9c9cf;
+      --text-strong: #f1f1f4;
+      --text-muted: #8e8e97;
+      --text-faint: #67676f;
+      --accent: #a3a4ff;
+      --warm: #f0a35e;
+    }
+
+    html[data-theme="light"] {
+      --bg: #f7f7f5;
+      --bg-panel: #ffffff;
+      --bg-card: #f0eee9;
+      --line: #e5e3de;
+      --text: #333333;
+      --text-strong: #161616;
+      --text-muted: #6d6d6d;
+      --text-faint: #9b9b9b;
+      --accent: #4a5cd4;
+      --warm: #d9582e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      transition: background-color .3s, color .3s;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 28px;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--text-strong);
+      letter-spacing: .5px;
+    }
+
+    .tagline {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    header button {
+      margin-left: auto;
+      padding: 7px 16px;
+      font-size: 13px;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform .15s;
+    }
+
+    header button:hover {
+      transform: translateY(-1px);
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 24px 72px;
+    }
+
+    .lede {
+      max-width: 640px;
+      color: var(--text-muted);
+      margin: 8px 0 36px;
+    }
+
+    section {
+      margin-bottom: 44px;
+    }
+
+    h2 {
+      font-size: 21px;
+      color: var(--text-strong);
+      margin: 0 0 6px;
+    }
+
+    .sub {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0 0 16px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-size: 15px;
+      color: var(--text-strong);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+      gap: 12px;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 6px;
+    }
+
+    .chip-col {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .chip-col .chip {
+      width: 100%;
+    }
+
+    .chip {
+      flex: 1;
+      height: 72px;
+      border-radius: 10px;
+      border: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11.5px;
+    }
+
+    .chip-label {
+      flex: none;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .meta .role {
+      color: var(--text-strong);
+      font-size: 13.5px;
+    }
+
+    .meta .sem {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 9px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    thead th {
+      background: color-mix(in srgb, var(--line) 45%, transparent);
+      color: var(--text-strong);
+      font-weight: 600;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:nth-child(even) {
+      background: color-mix(in srgb, var(--bg-panel) 45%, transparent);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      vertical-align: -1px;
+      margin-right: 6px;
+      border: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+    }
+
+    .ansi-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 10px;
+    }
+
+    .ansi-cell {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .ansi-chip {
+      height: 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 11px;
+    }
+
+    .ansi-cell .idx {
+      font-size: 11px;
+      color: var(--text-faint);
+      padding: 5px 8px 7px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .ansi-cell .idx b {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-faint);
+      font-size: 12.5px;
+      padding: 24px 16px 48px;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 640px) {
+      .ansi-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      main {
+        padding: 22px 14px 56px;
+      }
+
+      header {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <h1>hucolor</h1>
-  <p class="tagline">暖纸 · 靛蓝 · 陶土橙</p>
-  <button id="modeToggle">切换到亮色</button>
-</header>
+  <header>
+    <h1>hucolor</h1>
+    <p class="tagline">暖纸 · 靛蓝 · 陶土橙</p>
+    <button id="modeToggle">切换到亮色</button>
+  </header>
 
-<main>
-  <p class="lede">低饱和、暖底、冷主色的配色体系。暗色为默认变体（微紫深灰），亮色为暖纸风格。页面可切换暗 / 亮展示模式。</p>
+  <main>
+    <p class="lede">低饱和、暖底、冷主色的配色体系。暗色为默认变体（微紫深灰），亮色为暖纸风格。数据来源 <code>colors-definition.json</code>，页面可切换暗 / 亮展示模式。</p>
 
-  <section id="mapping">
-    <h2>语义角色映射</h2>
-    <p class="sub">语法 / UI 高亮统一使用语义名，暗 / 亮两套取值。</p>
-    <div class="card">
-      <table>
-        <thead><tr><th>语义名</th><th>暗色</th><th>亮色</th><th>典型用途</th></tr></thead>
-        <tbody id="mappingBody"></tbody>
-      </table>
-    </div>
-  </section>
+    <section id="mapping">
+      <h2>语义角色映射</h2>
+      <p class="sub">语法 / UI 高亮统一使用语义名，暗 / 亮两套取值。</p>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>语义名</th>
+              <th>暗色</th>
+              <th>亮色</th>
+              <th>典型用途</th>
+            </tr>
+          </thead>
+          <tbody id="mappingBody"></tbody>
+        </table>
+      </div>
+    </section>
 
-  <section id="dark">
-    <h2>暗色</h2>
-    <p class="sub">背景层级：定义值（设计基准）与提亮应用值（终端 / 编辑器）并列展示。</p>
-    <div class="card" id="darkBg"></div>
-    <div class="card" id="darkText"></div>
-    <div class="card" id="darkAccent"></div>
-    <div class="card" id="darkAnsi"></div>
-  </section>
+    <section id="dark">
+      <h2>暗色</h2>
+      <p class="sub">背景层级：定义值（设计基准）与提亮应用值（终端 / 编辑器）并列展示。</p>
+      <div class="card" id="darkBg"></div>
+      <div class="card" id="darkText"></div>
+      <div class="card" id="darkAccent"></div>
+      <div class="card" id="darkAnsi"></div>
+    </section>
 
-  <section id="light">
-    <h2>亮色</h2>
-    <p class="sub">亮色各角色定义即应用，单值展示。</p>
-    <div class="card" id="lightBgText"></div>
-    <div class="card" id="lightAccent"></div>
-    <div class="card" id="lightAnsi"></div>
-  </section>
+    <section id="light">
+      <h2>亮色</h2>
+      <p class="sub">亮色各角色定义即应用，单值展示。</p>
+      <div class="card" id="lightBg"></div>
+      <div class="card" id="lightText"></div>
+      <div class="card" id="lightAccent"></div>
+      <div class="card" id="lightAnsi"></div>
+    </section>
+  </main>
 
-  <section id="extra">
-    <h2>补充与派生</h2>
-    <p class="sub">网页专属补充与 10:1 混色规则产生的派生值。</p>
-    <div class="card" id="extraWeb"></div>
-    <div class="card" id="extraMix"></div>
-  </section>
-</main>
+  <footer>hucolor 配色参考 · <span id="version"></span> · 暖纸 + 靛蓝 + 陶土橙</footer>
 
-<footer>hucolor 配色参考 · 暖纸 + 靛蓝 + 陶土橙</footer>
+  <script>
+    const chipText = (hex) => {
+      const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      return (0.2126 * r + 0.7152 * g + 0.0722 * b) > 140 ? '#161616' : '#f1f1f4';
+    };
 
-<script>
-const chipText = (hex) => {
-  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-  return (0.2126*r + 0.7152*g + 0.0722*b) > 140 ? '#161616' : '#f1f1f4';
-};
-
-const swatchCard = (role, sem, hex, desc) => `
+    const swatchCard = (role, sem, hex, desc) => `
   <div class="swatch">
     <div class="chips">
       <div class="chip" style="background:${hex};color:${chipText(hex)}">${hex}</div>
@@ -209,11 +377,17 @@ const swatchCard = (role, sem, hex, desc) => `
     </div>
   </div>`;
 
-const dualCard = (role, sem, def, app, desc) => `
+    const dualCard = (role, sem, def, app, desc) => `
   <div class="swatch">
     <div class="chips">
-      <div class="chip" style="background:${def};color:${chipText(def)}">${def}</div>
-      <div class="chip" style="background:${app};color:${chipText(app)}">${app}</div>
+      <div class="chip-col">
+        <div class="chip" style="background:${def};color:${chipText(def)}">${def}</div>
+        <div class="chip-label">定义值</div>
+      </div>
+      <div class="chip-col">
+        <div class="chip" style="background:${app};color:${chipText(app)}">${app}</div>
+        <div class="chip-label">提亮应用</div>
+      </div>
     </div>
     <div class="meta">
       <span class="role">${role}</span>
@@ -222,166 +396,79 @@ const dualCard = (role, sem, def, app, desc) => `
     </div>
   </div>`;
 
-const ansiCell = (idx, hex, note) => `
+    const ansiCell = (idx, hex, note) => `
   <div class="ansi-cell">
     <div class="ansi-chip" style="background:${hex};color:${chipText(hex)}">${hex}</div>
     <div class="idx"><span>Color${idx}</span><b>${note}</b></div>
   </div>`;
 
-const grid = (items) => {
-  let tmp = "";
-  items.map((item) => tmp = tmp + item);
-  return `<div class="grid">${tmp}</div>`;
-}
+    const grid = (items) => `<div class="grid">${items.join('')}</div>`;
 
+    const render = (darkBg, darkText, darkAccent, darkAnsi, lightBg, lightText, lightAccent, lightAnsi, mapping) => {
+      document.getElementById('darkBg').innerHTML = '<h3>背景层级</h3>' + grid(darkBg);
+      document.getElementById('darkText').innerHTML = '<h3>文字层级</h3>' + grid(darkText);
+      document.getElementById('darkAccent').innerHTML = '<h3>强调与语义色</h3>' + grid(darkAccent);
+      document.getElementById('darkAnsi').innerHTML = '<h3>终端 ANSI 16 色</h3>' + '<div class="ansi-grid">' + darkAnsi.join('') + '</div>';
 
-const darkBg = [
-  dualCard('背景（最深）', 'bg0', '#141416', '#232328', '编辑器底色；提亮值即终端默认背景'),
-  dualCard('卡片 / 浮窗', 'bg1', '#1d1d21', '#2c2c34', '卡片、浮窗、侧栏、cursorline'),
-  dualCard('次级 / 悬停', 'bg2', '#232329', '#32323b', 'hover、偶数行、折叠面板、次级控件'),
-  dualCard('分隔线', 'bg3', '#2e2e35', '#3d3d46', '分隔线、边框、缩进引导线'),
-  dualCard('分隔线（强）', 'bg3_bright', '#3a3a43', '#494955', '强边框、表头边框、滚动条'),
-];
+      document.getElementById('lightBg').innerHTML = '<h3>背景层级</h3>' + grid(lightBg);
+      document.getElementById('lightText').innerHTML = '<h3>文字层级</h3>' + grid(lightText);
+      document.getElementById('lightAccent').innerHTML = '<h3>强调与语义色</h3>' + grid(lightAccent);
+      document.getElementById('lightAnsi').innerHTML = '<h3>终端 ANSI 16 色</h3>' + '<div class="ansi-grid">' + lightAnsi.join('') + '</div>';
 
-const darkText = [
-  swatchCard('标题文字', 'fg0', '#f1f1f4', '标题、强调文字'),
-  swatchCard('正文文字', 'fg1', '#c9c9cf', '正文'),
-  swatchCard('次要文字', 'fg2', '#8e8e97', '注释、次要说明、菜单'),
-  swatchCard('淡文字', 'fg3', '#67676f', '行号、页脚、占位、inlay hint'),
-];
-
-const darkAccent = [
-  swatchCard('靛蓝主色', 'blue', '#a3a4ff', '关键字 / 类型 / 运算符 / 链接 / 激活态'),
-  swatchCard('靛蓝（强）', 'blue_bright', '#d6d7ff', '布尔、强调悬停、亮色态'),
-  swatchCard('兰花紫', 'purple', '#c792ea', '数字 / 浮点 / 注解 / 已访问链接'),
-  swatchCard('暖橙', 'orange', '#f0a35e', '函数 / 标题 1 / 匹配 / 点缀'),
-  swatchCard('玫红', 'rose', '#d0508a', '行内代码、代码块'),
-  swatchCard('绿（成功）', 'green', '#4cc36a', '字符串 / diff+ / 成功'),
-  swatchCard('黄（警告）', 'yellow', '#e8a23d', '预处理 / 宏 / TODO / 警告'),
-  swatchCard('高亮标记', 'mark', '#4a3b20', '高亮（网页端）'),
-  swatchCard('红（错误）', 'red', '#e0554a', '错误 / 删除 / danger'),
-  swatchCard('青（信息）', 'cyan', '#7cc6cf', '信息 / hint / 特殊注释 / 正则'),
-];
-
-const darkAnsi = [
-  ansiCell(0,  '#5a5a64', 'black'),
-  ansiCell(1,  '#e0554a', 'red'),
-  ansiCell(2,  '#4cc36a', 'green'),
-  ansiCell(3,  '#e8a23d', 'yellow'),
-  ansiCell(4,  '#a3a4ff', 'blue'),
-  ansiCell(5,  '#c792ea', 'purple'),
-  ansiCell(6,  '#7cc6cf', 'cyan'),
-  ansiCell(7,  '#f1f1f4', 'fg0'),
-  ansiCell(8,  '#64646e', 'bright_black'),
-  ansiCell(9,  '#d0508a', 'rose'),
-  ansiCell(10, '#6fd98a', 'bright_green'),
-  ansiCell(11, '#f0a35e', 'orange'),
-  ansiCell(12, '#d6d7ff', 'blue_bright'),
-  ansiCell(13, '#d8b4f2', 'bright_purple'),
-  ansiCell(14, '#a5dae0', 'bright_cyan'),
-  ansiCell(15, '#ffffff', 'white'),
-];
-
-const lightBgText = [
-  swatchCard('背景', 'bg0', '#f7f7f5', '暖纸'),
-  swatchCard('卡片 / 浮窗', 'bg1', '#ffffff', ''),
-  swatchCard('次级', 'bg2', '#f0eee9', ''),
-  swatchCard('分隔线', 'bg3', '#e5e3de', ''),
-  swatchCard('分隔线（强）', 'bg3_bright', '#d3d0c8', ''),
-  swatchCard('标题文字', 'fg0', '#161616', ''),
-  swatchCard('正文文字', 'fg1', '#333333', ''),
-  swatchCard('次要文字', 'fg2', '#6d6d6d', ''),
-  swatchCard('淡文字', 'fg3', '#9b9b9b', ''),
-];
-
-const lightAccent = [
-  swatchCard('靛蓝主色', 'blue', '#4a5cd4', ''),
-  swatchCard('靛蓝（强）', 'blue_bright', '#2f3fae', '明显加深，与主色拉开对比'),
-  swatchCard('兰花紫', 'purple', '#7d6fb8', ''),
-  swatchCard('暖橙 / 陶土橙', 'orange', '#d9582e', ''),
-  swatchCard('玫红', 'rose', '#ad3d63', '玫红亮色版'),
-  swatchCard('绿（成功）', 'green', '#2e9e44', ''),
-  swatchCard('黄（警告）', 'yellow', '#d98a00', ''),
-  swatchCard('高亮标记', 'mark', '#f7e8c8', ''),
-  swatchCard('红（错误）', 'red', '#c94b3d', ''),
-  swatchCard('青（信息）', 'cyan', '#2f9eab', ''),
-];
-
-const lightAnsi = [
-  ansiCell(0,  '#161616', 'text-strong'),
-  ansiCell(1,  '#c94b3d', 'red'),
-  ansiCell(2,  '#2e9e44', 'done'),
-  ansiCell(3,  '#d98a00', 'warn'),
-  ansiCell(4,  '#4a5cd4', 'accent'),
-  ansiCell(5,  '#7d6fb8', 'accent-visited'),
-  ansiCell(6,  '#2f9eab', 'cyan'),
-  ansiCell(7,  '#161616', 'fg0'),
-  ansiCell(8,  '#333333', 'text'),
-  ansiCell(9,  '#ad3d63', 'rose'),
-  ansiCell(10, '#2e9e44', 'done'),
-  ansiCell(11, '#d9582e', 'warm'),
-  ansiCell(12, '#2f3fae', 'accent-strong'),
-  ansiCell(13, '#7d6fb8', 'accent-visited'),
-  ansiCell(14, '#2f9eab', 'cyan'),
-  ansiCell(15, '#ffffff', 'white'),
-];
-
-const extraWeb = [
-  swatchCard('代码块底色（暗）', '', '#1b1b20', '网页专属'),
-  swatchCard('表头底色（暗）', '', '#26262d', '网页专属'),
-  swatchCard('代码块底色（亮）', '', '#f1efe9', '网页专属'),
-  swatchCard('表头底色（亮）', '', '#ecebe5', '网页专属'),
-];
-
-const extraMix = [
-  swatchCard('Headline1', '', '#362f2d', 'bg0 × 暖橙 10:1'),
-  swatchCard('Headline2', '', '#352f2a', 'bg0 × 黄 10:1'),
-  swatchCard('Headline3', '', '#27322e', 'bg0 × 绿 10:1'),
-  swatchCard('Headline4', '', '#2f2f3c', 'bg0 × 靛蓝 10:1'),
-  swatchCard('Headline5', '', '#322d3a', 'bg0 × 紫 10:1'),
-  swatchCard('Headline6', '', '#33333c', 'bg0 × 靛蓝强 10:1'),
-];
-
-const mapping = [
-  ['blue',        '#a3a4ff', '#4a5cd4', '关键字、类型、运算符、include/tag、构造函数、链接、目录、bufferline 指示、激活态'],
-  ['blue_bright', '#d6d7ff', '#2f3fae', '布尔、内建常量强调、符号链接、展开的文件夹'],
-  ['purple',      '#c792ea', '#7d6fb8', '数字 / 浮点、注解、属性、补全种类、跳转标签次级'],
-  ['orange',      '#f0a35e', '#d9582e', '函数 / 方法、标题 1、匹配括号、增量搜索、which-key、visual 模式'],
-  ['green',       '#4cc36a', '#2e9e44', '字符串、字符、URL、diff 新增、git add、成功、help 命令'],
-  ['yellow',      '#e8a23d', '#d98a00', '预处理、宏、TODO、警告、diff 变更、git change、跳转标签'],
-  ['red',         '#e0554a', '#c94b3d', '错误、删除、danger、replace 模式、拼写错误'],
-  ['cyan',        '#7cc6cf', '#2f9eab', '信息 / hint、特殊注释、正则、数学文本'],
-  ['rose',        '#d0508a', '#ad3d63', '行内代码、代码块'],
-  ['fg2',         '#8e8e97', '#6d6d6d', '注释、标点、次要文字'],
-];
-
-const render = () => {
-  document.getElementById('darkBg').innerHTML = '<h3>背景层级（定义与应用）</h3>' + grid(darkBg);
-  document.getElementById('darkText').innerHTML = '<h3>文字层级</h3>' + grid(darkText);
-  document.getElementById('darkAccent').innerHTML = '<h3>强调与语义色</h3>' + grid(darkAccent);
-  document.getElementById('darkAnsi').innerHTML = '<h3>终端 ANSI 16 色</h3>' + '<div class="ansi-grid">' + darkAnsi.join('') + '</div>';
-  document.getElementById('lightBgText').innerHTML = '<h3>背景与文字</h3>' + grid(lightBgText);
-  document.getElementById('lightAccent').innerHTML = '<h3>强调与语义色</h3>' + grid(lightAccent);
-  document.getElementById('lightAnsi').innerHTML = '<h3>终端 ANSI 16 色（语义等价）</h3>' + '<div class="ansi-grid">' + lightAnsi.join('') + '</div>';
-  document.getElementById('extraWeb').innerHTML = '<h3>网页专属补充</h3>' + grid(extraWeb);
-  document.getElementById('extraMix').innerHTML = '<h3>标题混色（bg0 × 标题色 10:1）</h3>' + grid(extraMix);
-  document.getElementById('mappingBody').innerHTML = mapping.map(m => `
+      document.getElementById('mappingBody').innerHTML = mapping.map(m => `
     <tr>
       <td><code>${m[0]}</code></td>
       <td><span class="dot" style="background:${m[1]}"></span><code>${m[1]}</code></td>
       <td><span class="dot" style="background:${m[2]}"></span><code>${m[2]}</code></td>
       <td>${m[3]}</td>
     </tr>`).join('');
-};
+    };
 
-document.getElementById('modeToggle').addEventListener('click', () => {
-  const html = document.documentElement;
-  const isDark = html.dataset.theme === 'dark';
-  html.dataset.theme = isDark ? 'light' : 'dark';
-  document.getElementById('modeToggle').textContent = isDark ? '切换到暗色' : '切换到亮色';
-});
+    const sections = ['background', 'text', 'accent', 'ansi'];
 
-render();
-</script>
+    const colorOf = (themes, theme, name) => {
+      for (const sec of sections) {
+        const hit = themes[theme][sec].find(it => it.name === name);
+        if (hit) return hit.color_base;
+      }
+      return '';
+    };
+
+    fetch('colors-definition.json')
+      .then((resp) => resp.json())
+      .then((config) => {
+        document.title = 'hucolor 配色展示 · ' + config.version;
+        document.getElementById('version').textContent = config.version;
+        const themes = config.themes;
+        const d = themes.dark;
+        const l = themes.light;
+
+        const darkBg = d.background.map(e => dualCard(e.role, e.name, e.color_base, e.color_bright, e.description));
+        const darkText = d.text.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
+        const darkAccent = d.accent.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
+        const darkAnsi = d.ansi.map(e => ansiCell(parseInt(e.role.slice(5), 10), e.color_base, e.name));
+
+        const lightBg = l.background.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
+        const lightText = l.text.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
+        const lightAccent = l.accent.map(e => swatchCard(e.role, e.name, e.color_base, e.description));
+        const lightAnsi = l.ansi.map(e => ansiCell(parseInt(e.role.slice(5), 10), e.color_base, e.name));
+
+        const mapping = Object.entries(config.accent_desc).map(([name, desc]) =>
+          [name, colorOf(themes, 'dark', name), colorOf(themes, 'light', name), desc]);
+
+        render(darkBg, darkText, darkAccent, darkAnsi, lightBg, lightText, lightAccent, lightAnsi, mapping);
+      })
+      .catch((err) => {
+        document.querySelector('main').innerHTML = '<p class="sub">无法加载 colors-definition.json：' + err + '</p>';
+      });
+
+    document.getElementById('modeToggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const isDark = html.dataset.theme === 'dark';
+      html.dataset.theme = isDark ? 'light' : 'dark';
+      document.getElementById('modeToggle').textContent = isDark ? '切换到暗色' : '切换到亮色';
+    });
+  </script>
 </body>
+
 </html>

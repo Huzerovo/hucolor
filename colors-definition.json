@@ -1,0 +1,462 @@
+{
+  "version": "1.0.2",
+  "themes": {
+    "dark": {
+      "background": [
+        {
+          "role": "背景（最深）",
+          "color_base": "#141416",
+          "color_bright": "#232328",
+          "name": "bg0",
+          "description": "编辑器底色；提亮值即终端默认背景"
+        },
+        {
+          "role": "卡片 / 浮窗",
+          "color_base": "#1d1d21",
+          "color_bright": "#2c2c34",
+          "name": "bg1",
+          "description": "卡片、浮窗、侧栏、cursorline"
+        },
+        {
+          "role": "次级 / 悬停",
+          "color_base": "#232329",
+          "color_bright": "#32323b",
+          "name": "bg2",
+          "description": "hover、偶数行、折叠面板、次级控件"
+        },
+        {
+          "role": "分隔线",
+          "color_base": "#2e2e35",
+          "color_bright": "#3d3d46",
+          "name": "bg3",
+          "description": "分隔线、边框、缩进引导线"
+        },
+        {
+          "role": "分隔线（强）",
+          "color_base": "#3a3a43",
+          "color_bright": "#494955",
+          "name": "bg3_bright",
+          "description": "强边框、表头边框、滚动条"
+        }
+      ],
+      "text": [
+        {
+          "role": "标题文字",
+          "color_base": "#f1f1f4",
+          "name": "fg0",
+          "description": "标题、强调文字"
+        },
+        {
+          "role": "正文文字",
+          "color_base": "#c9c9cf",
+          "name": "fg1",
+          "description": "正文"
+        },
+        {
+          "role": "次要文字",
+          "color_base": "#8e8e97",
+          "name": "fg2",
+          "description": "注释、次要说明、菜单"
+        },
+        {
+          "role": "淡文字",
+          "color_base": "#67676f",
+          "name": "fg3",
+          "description": "行号、页脚、占位、inlay hint"
+        }
+      ],
+      "accent": [
+        {
+          "role": "靛蓝主色",
+          "color_base": "#a3a4ff",
+          "name": "blue",
+          "description": "关键字 / 类型 / 运算符 / 链接 / 激活态"
+        },
+        {
+          "role": "靛蓝（强）",
+          "color_base": "#d6d7ff",
+          "name": "blue_bright",
+          "description": "布尔、强调悬停、亮色态"
+        },
+        {
+          "role": "兰花紫",
+          "color_base": "#c792ea",
+          "name": "purple",
+          "description": "数字 / 浮点 / 注解 / 已访问链接"
+        },
+        {
+          "role": "暖橙",
+          "color_base": "#f0a35e",
+          "name": "orange",
+          "description": "函数 / 标题 1 / 匹配 / 点缀"
+        },
+        {
+          "role": "玫红",
+          "color_base": "#d0508a",
+          "name": "rose",
+          "description": "行内代码、代码块"
+        },
+        {
+          "role": "绿（成功）",
+          "color_base": "#4cc36a",
+          "name": "green",
+          "description": "字符串 / diff+ / 成功"
+        },
+        {
+          "role": "黄（警告）",
+          "color_base": "#e8a23d",
+          "name": "yellow",
+          "description": "预处理 / 宏 / TODO / 警告"
+        },
+        {
+          "role": "高亮标记",
+          "color_base": "#4a3b20",
+          "name": "mark",
+          "description": "高亮（网页端）"
+        },
+        {
+          "role": "红（错误）",
+          "color_base": "#e0554a",
+          "name": "red",
+          "description": "错误 / 删除 / danger"
+        },
+        {
+          "role": "青（信息）",
+          "color_base": "#7cc6cf",
+          "name": "cyan",
+          "description": "信息 / hint / 特殊注释 / 正则"
+        }
+      ],
+      "ansi": [
+        {
+          "role": "Color0",
+          "color_base": "#5a5a64",
+          "name": "black",
+          "description": "终端黑"
+        },
+        {
+          "role": "Color1",
+          "color_base": "#e0554a",
+          "name": "red",
+          "description": "同语义红"
+        },
+        {
+          "role": "Color2",
+          "color_base": "#4cc36a",
+          "name": "green",
+          "description": "同 `done`"
+        },
+        {
+          "role": "Color3",
+          "color_base": "#e8a23d",
+          "name": "yellow",
+          "description": "同 `warn`"
+        },
+        {
+          "role": "Color4",
+          "color_base": "#a3a4ff",
+          "name": "blue",
+          "description": "同 `accent`"
+        },
+        {
+          "role": "Color5",
+          "color_base": "#c792ea",
+          "name": "purple",
+          "description": "同 `accent-visited`"
+        },
+        {
+          "role": "Color6",
+          "color_base": "#7cc6cf",
+          "name": "cyan",
+          "description": "派生青"
+        },
+        {
+          "role": "Color7",
+          "color_base": "#f1f1f4",
+          "name": "fg0",
+          "description": "同 `text-strong`"
+        },
+        {
+          "role": "Color8",
+          "color_base": "#64646e",
+          "name": "bright_black",
+          "description": "补全提示 / 亮黑"
+        },
+        {
+          "role": "Color9",
+          "color_base": "#d0508a",
+          "name": "rose",
+          "description": "同 `code-text`"
+        },
+        {
+          "role": "Color10",
+          "color_base": "#6fd98a",
+          "name": "bright_green",
+          "description": "亮绿"
+        },
+        {
+          "role": "Color11",
+          "color_base": "#f0a35e",
+          "name": "orange",
+          "description": "同 `warm`"
+        },
+        {
+          "role": "Color12",
+          "color_base": "#d6d7ff",
+          "name": "blue_bright",
+          "description": "同 `accent-strong`"
+        },
+        {
+          "role": "Color13",
+          "color_base": "#d8b4f2",
+          "name": "bright_purple",
+          "description": "亮紫"
+        },
+        {
+          "role": "Color14",
+          "color_base": "#a5dae0",
+          "name": "bright_cyan",
+          "description": "亮青"
+        },
+        {
+          "role": "Color15",
+          "color_base": "#ffffff",
+          "name": "white",
+          "description": "白"
+        }
+      ]
+    },
+    "light": {
+      "background": [
+        {
+          "role": "背景",
+          "color_base": "#f7f7f5",
+          "name": "bg0",
+          "description": "编辑器底色；提亮值即终端默认背景"
+        },
+        {
+          "role": "卡片 / 浮窗",
+          "color_base": "#ffffff",
+          "name": "bg1",
+          "description": "卡片、浮窗、侧栏、cursorline"
+        },
+        {
+          "role": "次级",
+          "color_base": "#f0eee9",
+          "name": "bg2",
+          "description": "hover、偶数行、折叠面板、次级控件"
+        },
+        {
+          "role": "分隔线",
+          "color_base": "#e5e3de",
+          "name": "bg3",
+          "description": "分隔线、边框、缩进引导线"
+        },
+        {
+          "role": "分隔线（强）",
+          "color_base": "#d3d0c8",
+          "name": "bg3_bright",
+          "description": "强边框、表头边框、滚动条"
+        }
+      ],
+      "text": [
+        {
+          "role": "标题文字",
+          "color_base": "#161616",
+          "name": "fg0",
+          "description": "标题、强调文字"
+        },
+        {
+          "role": "正文文字",
+          "color_base": "#333333",
+          "name": "fg1",
+          "description": "正文"
+        },
+        {
+          "role": "次要文字",
+          "color_base": "#6d6d6d",
+          "name": "fg2",
+          "description": "注释、次要说明、菜单"
+        },
+        {
+          "role": "淡文字",
+          "color_base": "#9b9b9b",
+          "name": "fg3",
+          "description": "行号、页脚、占位、inlay hint"
+        }
+      ],
+      "accent": [
+        {
+          "role": "靛蓝主色",
+          "color_base": "#4a5cd4",
+          "name": "blue",
+          "description": "关键字 / 类型 / 运算符 / 链接 / 激活态"
+        },
+        {
+          "role": "靛蓝（强）",
+          "color_base": "#2f3fae",
+          "name": "blue_bright",
+          "description": "布尔、强调悬停、亮色态"
+        },
+        {
+          "role": "兰花紫",
+          "color_base": "#7d6fb8",
+          "name": "purple",
+          "description": "数字 / 浮点 / 注解 / 已访问链接"
+        },
+        {
+          "role": "暖橙 / 陶土橙",
+          "color_base": "#d9582e",
+          "name": "orange",
+          "description": "函数 / 标题 1 / 匹配 / 点缀"
+        },
+        {
+          "role": "玫红",
+          "color_base": "#ad3d63",
+          "name": "rose",
+          "description": "行内代码、代码块"
+        },
+        {
+          "role": "绿（成功）",
+          "color_base": "#2e9e44",
+          "name": "green",
+          "description": "字符串 / diff+ / 成功"
+        },
+        {
+          "role": "黄（警告）",
+          "color_base": "#d98a00",
+          "name": "yellow",
+          "description": "预处理 / 宏 / TODO / 警告"
+        },
+        {
+          "role": "高亮标记",
+          "color_base": "#f7e8c8",
+          "name": "mark",
+          "description": "高亮（网页端）"
+        },
+        {
+          "role": "红（错误）",
+          "color_base": "#c94b3d",
+          "name": "red",
+          "description": "错误 / 删除 / danger"
+        },
+        {
+          "role": "青（信息）",
+          "color_base": "#2f9eab",
+          "name": "cyan",
+          "description": "信息 / hint / 特殊注释 / 正则"
+        }
+      ],
+      "ansi": [
+        {
+          "role": "Color0",
+          "color_base": "#161616",
+          "name": "black",
+          "description": "黑 = `text-strong`"
+        },
+        {
+          "role": "Color1",
+          "color_base": "#c94b3d",
+          "name": "red",
+          "description": "红 = `red`"
+        },
+        {
+          "role": "Color2",
+          "color_base": "#2e9e44",
+          "name": "green",
+          "description": "绿 = `done`"
+        },
+        {
+          "role": "Color3",
+          "color_base": "#d98a00",
+          "name": "yellow",
+          "description": "黄 = `warn`"
+        },
+        {
+          "role": "Color4",
+          "color_base": "#4a5cd4",
+          "name": "blue",
+          "description": "蓝 = `accent`"
+        },
+        {
+          "role": "Color5",
+          "color_base": "#7d6fb8",
+          "name": "purple",
+          "description": "紫 = `accent-visited`"
+        },
+        {
+          "role": "Color6",
+          "color_base": "#2f9eab",
+          "name": "cyan",
+          "description": "青 = `cyan`"
+        },
+        {
+          "role": "Color7",
+          "color_base": "#161616",
+          "name": "fg0",
+          "description": "亮白槽 = `fg0`（最深文字）"
+        },
+        {
+          "role": "Color8",
+          "color_base": "#333333",
+          "name": "bright_black",
+          "description": "亮黑 = `text`"
+        },
+        {
+          "role": "Color9",
+          "color_base": "#ad3d63",
+          "name": "rose",
+          "description": "玫红 = `rose`"
+        },
+        {
+          "role": "Color10",
+          "color_base": "#2e9e44",
+          "name": "bright_green",
+          "description": "亮绿 = `done`"
+        },
+        {
+          "role": "Color11",
+          "color_base": "#d9582e",
+          "name": "orange",
+          "description": "亮橙 = `warm`"
+        },
+        {
+          "role": "Color12",
+          "color_base": "#2f3fae",
+          "name": "blue_bright",
+          "description": "亮蓝 = `accent-strong`"
+        },
+        {
+          "role": "Color13",
+          "color_base": "#7d6fb8",
+          "name": "bright_purple",
+          "description": "亮紫 = `accent-visited`"
+        },
+        {
+          "role": "Color14",
+          "color_base": "#2f9eab",
+          "name": "bright_cyan",
+          "description": "亮青 = `cyan`"
+        },
+        {
+          "role": "Color15",
+          "color_base": "#ffffff",
+          "name": "white",
+          "description": "白"
+        }
+      ]
+    }
+  },
+  "accent_desc": {
+    "blue": "关键字、类型、运算符、include/tag、构造函数、链接、目录、bufferline 指示、激活态",
+    "blue_bright": "布尔、内建常量强调、符号链接、展开的文件夹",
+    "purple": "数字 / 浮点、注解、属性、补全种类、跳转标签次级",
+    "orange": "函数 / 方法、标题 1、匹配括号、增量搜索、which-key、visual 模式",
+    "green": "字符串、字符、URL、diff 新增、git add、成功、help 命令",
+    "yellow": "预处理、宏、TODO、警告、diff 变更、git change、跳转标签",
+    "red": "错误、删除、danger、replace 模式、拼写错误",
+    "cyan": "信息 / hint、特殊注释、正则、数学文本",
+    "rose": "行内代码、代码块",
+    "fg2": "注释、标点、次要文字"
+  }
+}
